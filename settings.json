@@ -1,0 +1,20 @@
+[
+    {
+        "day_less": "4",
+        "folder_path": "C:\\Users\\essias.souza\\OneDrive - FleetCor\\DEV\\Python\\ConcLimpBackupV2.0.0\\Test_Enviroment\\month04"
+    },
+    {
+        "day_less": "30",
+        "folder_path": "C:\\Users\\essias.souza\\OneDrive - FleetCor\\DEV\\Python\\ConcLimpBackupV2.0.0\\Test_Enviroment"
+    }
+]
+
+
+
+
+with open('settings.json', 'r', encoding='utf-8') as f:
+    params = json.load(f)
+
+for param in params:
+    print(f'TEMPO: {param["day_less"]}, PASTA: {param["folder_path"]}')
+    daily()
