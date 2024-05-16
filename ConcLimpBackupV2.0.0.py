@@ -4,12 +4,13 @@ import os
 import shutil
 import pathlib
 import lib_applogs
+import json
 
 print('Starting application')
 lib_applogs.logger.warning('Starting application')
 
 # TESTING DATE
-input_date_str = "04/05/2024"
+input_date_str = "04/05/2023"
 current_date = datetime.datetime.strptime(input_date_str, "%d/%m/%Y")
 formated_date = current_date.strftime("%d/%m/%Y %H:%M:%S")
 
@@ -19,40 +20,52 @@ formated_date = current_date.strftime("%d/%m/%Y %H:%M:%S")
 print("Data Formatada:", formated_date)
 lib_applogs.logger.warning(f'Defined date:{formated_date}')
 
+
+
 def daily():
 
-    day_less = 4
+    with open('settings.json', 'r', encoding='utf-8') as f:
+        params = json.load(f)
 
-    adjusted_date = current_date - datetime.timedelta(days=day_less)
-    adjusted_formated_date = adjusted_date.strftime("%d/%m/%Y %H:%M:%S")
-    print("Adjusted date:", adjusted_formated_date)
+    for param in params:
+        try:
+            print(f'TIME: {param["day_less"]}, DIRECTORY: {param["folder_path"]}')
 
-    folder_path = r"C:\\Users\\essias.souza\\OneDrive - FleetCor\DEV\\Python\\ConcLimpBackupV2.0.0\\Test_Enviroment\\month04"
+            day_less = int(param["day_less"])
 
-    subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
+            adjusted_date = current_date - datetime.timedelta(days=day_less)
+            adjusted_formated_date = adjusted_date.strftime("%d/%m/%Y %H:%M:%S")
+            print("Adjusted date:", adjusted_formated_date)
 
-    if subfolders:
+            folder_path = param["folder_path"]
 
-        for subfolder in subfolders:
-            modification_time = os.path.getmtime(subfolder)
-            modification_date = datetime.datetime.fromtimestamp(modification_time)
-            modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
+            subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
 
-            if modification_date < adjusted_date:
-                print(subfolder)
-                print("Modification date of folder:", modification_formated_date)
-                shutil.rmtree(subfolder)
-                lib_applogs.logger.warning(f'Deleted: {subfolder}')
-                time.sleep(2)
-                
-    else:
-        print('-- There is nothing to delete')
+            if subfolders:
 
-    print('End of process.')
-    lib_applogs.logger.warning(f'End of daily process.')
-    time.sleep(135)
+                for subfolder in subfolders:
+                    modification_time = os.path.getmtime(subfolder)
+                    modification_date = datetime.datetime.fromtimestamp(modification_time)
+                    modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
+
+                    if modification_date < adjusted_date:
+                        print(subfolder)
+                        print("Modification date of folder:", modification_formated_date)
+                        shutil.rmtree(subfolder)
+                        lib_applogs.logger.warning(f'Deleted: {subfolder}')
+                        time.sleep(2)
+                        
+            else:
+                print('-- There is nothing to delete')
+
+            print('End of process.')
+            lib_applogs.logger.warning(f'End of purge process.')
+        except:
+            print('Root path not found')
 
 daily()
+print("finish")
+time.sleep(135)
 
 # Manipulação de arquivos
 caminho_diretorio = pathlib.Path.home() / "exemplo_diretorio"
