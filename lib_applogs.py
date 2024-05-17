@@ -15,7 +15,7 @@ else:
     os.mkdir('./logs')
 
 # Log name of application
-logFileName = LogFolder + "/backup-cleanning.log"
+logFileName = LogFolder + "/backup-cleaning.log"
 
 logger = logging.getLogger()    
 handler = TimedRotatingFileHandler(logFileName,

@@ -34,8 +34,7 @@ def daily():
             day_less = int(param["day_less"])
 
             adjusted_date = current_date - datetime.timedelta(days=day_less)
-            adjusted_formated_date = adjusted_date.strftime("%d/%m/%Y %H:%M:%S")
-            
+                        
             folder_path = param["folder_path"]
 
             subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
