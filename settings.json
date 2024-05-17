@@ -1,5 +1,8 @@
 [
     {
+        "run_pause_time": "86400"
+      },
+    {
         "day_less": "30",
         "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment"
     },

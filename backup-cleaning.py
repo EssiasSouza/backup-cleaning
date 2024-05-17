@@ -23,44 +23,63 @@ lib_applogs.logger.warning(f'Defined date:{formated_date}')
 
 
 def daily():
+    def main():
+        while True:
 
-    with open('settings.json', 'r', encoding='utf-8') as f:
-        params = json.load(f)
+            def delete():
+                with open('settings.json', 'r', encoding='utf-8') as f:
+                    params = json.load(f)
 
-    for param in params:
-        try:
-            print(f'DIRECTORY: {param["folder_path"]}')
+                for param in params:
+                    try:
+                        print(f'DIRECTORY: {param["folder_path"]}')
 
-            day_less = int(param["day_less"])
+                        day_less = int(param["day_less"])
 
-            adjusted_date = current_date - datetime.timedelta(days=day_less)
-                        
-            folder_path = param["folder_path"]
+                        adjusted_date = current_date - datetime.timedelta(days=day_less)
+                                    
+                        folder_path = param["folder_path"]
 
-            subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
+                        subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
 
-            if subfolders:
+                        if subfolders:
 
-                for subfolder in subfolders:
-                    modification_time = os.path.getmtime(subfolder)
-                    modification_date = datetime.datetime.fromtimestamp(modification_time)
-                    modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
+                            for subfolder in subfolders:
+                                modification_time = os.path.getmtime(subfolder)
+                                modification_date = datetime.datetime.fromtimestamp(modification_time)
+                                modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
 
-                    if modification_date < adjusted_date:
-                        print(subfolder)
-                        print("-- Modification date of folder is under of:", modification_formated_date , 'folder deleted!')
-                        shutil.rmtree(subfolder)
-                        lib_applogs.logger.warning(f'Deleted: {subfolder}')
+                                if modification_date < adjusted_date:
+                                    print(subfolder)
+                                    print("-- Modification date of folder is under of:", modification_formated_date , 'folder deleted!')
+                                    shutil.rmtree(subfolder)
+                                    lib_applogs.logger.warning(f'Deleted: {subfolder}')
+                                    time.sleep(2)
+                                    
+                        else:
+                            time.sleep(2)
+                            print('-- There is nothing to delete')
+
+                        lib_applogs.logger.warning(f'End of purge process.')
+                    except:
                         time.sleep(2)
-                        
-            else:
-                time.sleep(2)
-                print('-- There is nothing to delete')
+                        print('Path not found')
+            # delete()
+            with open('settings.json', 'r', encoding='utf-8') as file:
+                settings  = json.load(file)
+            run_pause_time_str = settings[0]['run_pause_time']
+            run_pause_time = int(run_pause_time_str)
+            hours_calculate = (run_pause_time / 60) / 60
+            finish = f'Waiting for {run_pause_time} seconds ({hours_calculate} hours) to execute again.'
+            print(finish)
+            lib_applogs.logger.warning(finish)
+            time.sleep(run_pause_time)
 
-            lib_applogs.logger.warning(f'End of purge process.')
-        except:
-            time.sleep(2)
-            print('Root path not found')
+    if __name__ == "__main__":
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("The service was stopped")   
 
 daily()
 print("Process finished")
