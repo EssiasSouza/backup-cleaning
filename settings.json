@@ -1,7 +1,11 @@
 [
     {
         "run_pause_time": "86400"
-      },
+    },
+    {
+        "logs_path": "logs",
+        "log_name": "backup-cleaning.log"
+    },
     {
         "day_less": "30",
         "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment"
