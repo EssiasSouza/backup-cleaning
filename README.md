@@ -1,6 +1,8 @@
 # Backup cleaning
-## Application Goal
-This application allows to purge folders of backups in a server. The parameters of time (in days), locations and logs configurations can be set through a file named settings.json.
+### Purpose of the application
+The **Backup cleaning** allows to purge folders of backups in a server. The parameters of time (in days), locations and logs configurations can be set through a file named settings.json.
+
+The settings.json file uses some examples to config:
 
 
 needed dependences
