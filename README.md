@@ -12,7 +12,8 @@ The settings.json file uses some examples to config:
 You can run this application in a Linux server with **Python 3.6** installed or if your server is Windows you can do that compiling the application using the following steps.
 - Install in your computer the **Python 3.6**
 - Install the PyInstaller
-- - pip install pyinstaller
+. pip install pyinstaller
+  
 
 
 how to run tests
