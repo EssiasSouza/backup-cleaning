@@ -6,20 +6,20 @@ The settings.json file uses some examples to config:
 - The first setting is the time at which the application should be run again. This time is defined in seconds.
 - Log folder and name. You can choose the best name and location for that.
 - Days to count before the current computer date to purge folders and its files.
-- Root path that the application needs to look for subfolders with data modifications under the date of purge. You can define the value for that if today is 2024/05/20 and you set the value as 15, the application will delete only folders that was modificated under or equal 2024/05/04.
+- Root path that the application needs to search for subfolders with modification date below the maximum purge date. For example, if you set the value to 15 and the current date is 2024/05/20, the application will only delete folders that were modified on dates less than or equal to 2024/05/04.
 
 ### Required dependences
 You can run this application in a **Linux** server with **Python 3.6** installed
 - You just need to run the command: python ./backup-cleaning.py
 
-Or if your server uses a Windows operational system you can do that compiling the application using the following steps.
-- Install in your computer the **Python 3.6**
-- Install the PyInstaller (pip install pyinstaller)
+Or if your server uses a Windows operating system you can do this by compiling the application following these steps below.
+- Install on your computer the **Python 3.6**
+- Also install the PyInstaller (pip install pyinstaller)
 - Download these project files on your computer
-- Open the project folder in the same terminal
+- Open the project folder on the same terminal
 - **Type the command**: pyinstaller --onefile .\backup-cleaning.py
-- Copy the file backup-cleaning.exe saved from the **dist** folder on a folder on the target computer.
-- Also copy the settings.json to the same folder on the target computer.
+- Copy the file **backup-cleaning.exe** saved from the **dist** folder on a folder on the destination computer.
+- Also copy the settings.json file to the same folder on the target computer.
 - You can create a service using NSSM application, or a task on the Windows or just run the backup-cleaning.exe
 
 ### How to run tests?
@@ -37,8 +37,8 @@ The **Backup-Cleaning** was created only in python using some libraries:
 
 ### How to run the application
 To run the application you need to follow the **Required dependences**.
-**For Linux you run**:
-- python./backup-cleaning.py
+**For Linux just run**:
+- python ./backup-cleaning.py
 **For Windows you can only run the same command or:**
 - Compile the application
 - Run backup-cleaning.exe
