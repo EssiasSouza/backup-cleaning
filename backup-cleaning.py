@@ -6,6 +6,9 @@ import pathlib
 import lib_applogs
 import json
 
+# Testing in 172.16.136.39 - Exe running without service created
+# Implement time sleep on the settings.json
+
 print('Starting application')
 lib_applogs.logger.warning('Starting application')
 
@@ -40,6 +43,7 @@ def daily():
                         folder_path = param["folder_path"]
 
                         subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
+                        files_in = [f.path for f in os.scandir(folder_path) if f.is_file()]
 
                         if subfolders:
 
@@ -62,6 +66,21 @@ def daily():
                             time.sleep(2)
                             print('-- There are no subfolders in this path')
                             lib_applogs.logger.warning(f'There are no subfolders in this path.')
+
+                        if files_in:
+
+                            for file_in in files_in:
+                                modification_time = os.path.getmtime(file_in)
+                                modification_date = datetime.datetime.fromtimestamp(modification_time)
+                                modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
+                                
+                                if modification_date < adjusted_date:
+                                    print(file_in)
+                                    print("-- Modification date of folder is under of:", modification_formated_date , 'folder deleted!')
+                                    os.remove(file_in)
+                                    lib_applogs.logger.warning(f'Deleted: {file_in}')
+                                    time.sleep(2)
+
                     except:
                         time.sleep(2)
                         print('There are no objects found')
