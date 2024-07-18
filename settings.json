@@ -7,55 +7,108 @@
         "log_name": "backup-cleaning.log"
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month01"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month01",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month02"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month02",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month03"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month03",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month04"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month04",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month05"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month05",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month06"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month06",
+            "ExceptExtDir": "day_06, txt"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month07"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month07",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month08"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month08",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month09"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month09",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month10"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month10",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month11"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month11",
+            "ExceptExtDir": "zzzzzzzz"
+        }
     },
     {
-        "day_less": "30",
-        "folder_path": "c:\\users\\essias.souza\\\\OneDrive - FleetCor\\DEV\\Tests\\Test_Enviroment\\month12"
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "C:\\teste\\DATA_LAKE\\year2024\\month12",
+            "ExceptExtDir": "zzzzzzzz"
+        }
+    },
+    {
+        "watchedDir": {
+            "day_less": "32",
+            "folder_path": "C:\\teste\\DATA_LAKE\\",
+            "ExceptExtDir": "TRN,TRT,JPEG,file109,ETP"
+        }
+    },
+    {
+        "watchedDir": {
+            "day_less": "15",
+            "folder_path": "C:\\teste\\DATA_LAKE_2",
+            "ExceptExtDir": "TESTE_FALHA"
+        }
     }
 ]

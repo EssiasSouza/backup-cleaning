@@ -13,6 +13,7 @@ log_name = ""
 for item in settings:
     if 'logs_path' in item:
         logs_path = item['logs_path']
+        print(logs_path)
     if 'log_name' in item:
         log_name = item['log_name']
 

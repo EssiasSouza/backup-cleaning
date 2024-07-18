@@ -1,7 +1,20 @@
-<<<<<<< HEAD
-# Daily Cleanup application
-
+# Daily Cleanup application (BACKUP CLEANING)
+Below we have the `Portuguese` version of this document.
 This Python application performs daily cleanup operations on specified directories, removing files and subfolders that are older than a given number of days. The application logs its actions and can be configured via a `settings.json` file.
+
+### Purpose of the application
+The **Backup Cleaning** allows to purge folders of backups in a server. The parameters of time (in days), locations and logs configurations can be set through a file named settings.json. This application runs reading all folders and files on the root path, verifying the modification date, and if the name of file or folder has some part as excluded or exception. After that, all of files or folders and its files will be deleted.
+
+The settings.json file uses some examples to config:
+- The first setting is the time at which the application should be run again. This time is defined in seconds on the `run_pause_time` item.
+- Log folder and name. You can choose the best name and location for that using the items `logs_path` and `log_name`.
+- `watchedDir` is the item that brings together the following sets:
+ - `day_less` to count before the current computer date to purge files, folders and its files.
+ - `folder_path` Is the root path that the application needs to search for fildes and subfolders with modification date below the maximum purge date. For example, if you set the value to 15 and the current date is 2024/05/20, the application will only delete folders that were modified on dates less than or equal to 2024/05/04.
+ - `ExceptExtDir` is the configuration of exceptions, where you can write terms that you want to remove items from list that have some part of name as the exception settings. Example, if you have a file called file.txt and you input there the `tx`, `txt`, `file`, `.txt` or any other part from name file, this file will be excluded from list of file.
+ (file_name = `["287478379AHMD.EAS","89384782334HRHASD.EAS"]` ExceptExtDir = ["TXT,JPG,47823"] | DELETE ONLY = 287478379AHMD.EAS because 8938`47823`34HRHASD.EAS has `47823`)
+
+ OBS: dont type SPACES into `ExceptExtDir` list.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -45,13 +58,22 @@ Create a `settings.json` file with the following structure:
 
 ## Usage
 
+Runing with python
+ - Copy this repository to any folder on your computer
+ - Make sure install python and its mentioned dependencies below.
+ - Change the settings.json file according to your preferences.
 Run the application using the command:
-
 ```sh
-python your_application_name.py
+python backup-cleaning.py
 ```
-
 To stop the application, press `Ctrl+C`.
+
+Run the application using the compiled file:
+
+ - 1 - Copy the backup-cleaning.v2.1.0.exe from `dist` folder to any folder
+ - 2 - Copy the settings.json file to the same folder of backup-cleaning.v2.1.0.exe
+ - 3 - Change the settings.json file according to your preferences.
+ - 4 - Try doing a test before to ensure if the result is the same waited for you.
 
 ## Details
 
@@ -88,57 +110,121 @@ The application includes basic error handling:
 
 ### application Termination
 
-The application can be terminated gracefully using `KeyboardInterrupt` (Ctrl+C).
+The application can be terminated gracefully using `KeyboardInterrupt` (Ctrl+C) or in using the compiled version, you can only close the terminal.
 
 =======
-# Backup Cleaning 🧹
-### Purpose of the application
-The **Backup Cleaning** allows to purge folders of backups in a server. The parameters of time (in days), locations and logs configurations can be set through a file named settings.json.
+# Aplicativo de Limpeza Diária de backups (BACKUP CLEANING)
 
-The settings.json file uses some examples to config:
-- The first setting is the time at which the application should be run again. This time is defined in seconds.
-- Log folder and name. You can choose the best name and location for that.
-- Days to count before the current computer date to purge folders and its files.
-- Root path that the application needs to search for subfolders with modification date below the maximum purge date. For example, if you set the value to 15 and the current date is 2024/05/20, the application will only delete folders that were modified on dates less than or equal to 2024/05/04.
+Este aplicativo Python realiza operações diárias de limpeza em diretórios especificados, removendo arquivos e subpastas que são mais antigos que um determinado número de dias. O aplicativo registra suas ações e pode ser configurado através de um arquivo `settings.json`.
 
-### Required dependences
-You can run this application in a **Linux** server with **Python 3.6** installed
-- You just need to run the command: python ./backup-cleaning.py
+### Propósito do Aplicativo
 
-Or if your server uses a Windows operating system you can do this by compiling the application following these steps below.
-- Install on your computer the **Python 3.6**
-- Also install the PyInstaller (pip install pyinstaller)
-- Download these project files on your computer
-- Open the project folder on the same terminal
-- **Type the command**: pyinstaller --onefile .\backup-cleaning.py
-- Copy the file **backup-cleaning.exe** saved from the **dist** folder on a folder on the destination computer.
-- Also copy the settings.json file to the same folder on the target computer.
-- You can create a service using NSSM application, or a task on the Windows or just run the backup-cleaning.exe
+O **Backup Cleaning** permite a limpeza de pastas de backups em um servidor. Os parâmetros de tempo (em dias), locais e configurações de logs podem ser definidos através de um arquivo chamado settings.json. Este aplicativo funciona lendo todas as pastas e arquivos no caminho raiz, verificando a data de modificação, e se o nome do arquivo ou pasta contém alguma parte como excluída ou exceção. Após isso, todos os arquivos ou pastas e seus arquivos serão deletados.
 
-### How to run tests?
-For varius tests you can use another application of mine called [FoldersCreatorForTests](https://github.com/EssiasSouza/FoldersCreatorForTests").
-FoldersCreatorForTests creates folders and files by changing the modification date, which allows you to test various backup file scenarios.
+O arquivo settings.json usa alguns exemplos para configuração:
+- A primeira configuração é o tempo no qual o aplicativo deve ser executado novamente. Este tempo é definido em segundos no item `run_pause_time`.
+- Pasta e nome do log. Você pode escolher o melhor nome e local para isso usando os itens `logs_path` e `log_name`.
+- `watchedDir` é o item que agrupa os seguintes conjuntos:
+  - `day_less` para contar antes da data atual do computador para purgar arquivos, pastas e seus arquivos.
+  - `folder_path` é o caminho raiz que o aplicativo precisa procurar por arquivos e subpastas com data de modificação abaixo da data máxima de purga. Por exemplo, se você definir o valor para 15 e a data atual for 20/05/2024, o aplicativo só excluirá pastas que foram modificadas em datas menores ou iguais a 04/05/2024.
+  - `ExceptExtDir` é a configuração de exceções, onde você pode escrever termos que deseja remover itens da lista que têm alguma parte do nome como as configurações de exceção. Exemplo, se você tem um arquivo chamado file.txt e você inserir ali `tx`, `txt`, `file`, `.txt` ou qualquer outra parte do nome do arquivo, este arquivo será excluído da lista de arquivos.
+    (file_name = `["287478379AHMD.EAS","89384782334HRHASD.EAS"]` ExceptExtDir = ["TXT,JPG,47823"] | APAGAR SOMENTE = 287478379AHMD.EAS porque 8938`47823`34HRHASD.EAS tem `47823`)
 
-### Used technologies
-The **Backup-Cleaning** was created only in python using some libraries:
-- datetime (To work the data modification time information)
-- time (To allow tests and wait states)
-- os (To access OS directories)
-- shutil (To manage OS directories)
-- lib_applogs (Also created by me to configure the logs files when I create any applications)
-- json
+OBS: não digite ESPAÇOS na lista `ExceptExtDir`.
 
-### How to run the application
-To run the application you need to follow the **Required dependences**.
-**For Linux just run**:
-- python ./backup-cleaning.py
-**For Windows you can only run the same command or:**
-- Compile the application
-- Run backup-cleaning.exe
+## Índice
+- [Visão Geral](#visão-geral)
+- [Configuração](#configuração)
+- [Uso](#uso)
+- [Detalhes](#detalhes)
 
-### Possibles problems / Faced problems
-I faced no problems in building this, you just need to be awake to the time of purging and the true path you need to purge.
+## Visão Geral
 
-### Next steps
-Implement the purging of logs generated by the application and copying the logs for sending via EDI.
->>>>>>> 835cbd936c6495b5f76e825d00cac68e73645322
+O aplicativo:
+1. Lê os parâmetros de configuração do `settings.json`.
+2. Define a data atual e a formata.
+3. Itera sobre os diretórios especificados para deletar arquivos e subpastas mais antigos que um número especificado de dias.
+4. Registra todas as ações usando `lib_applogs`.
+5. Pausa por um tempo configurável antes de executar novamente.
+
+## Configuração
+
+1. Certifique-se de ter o Python instalado no seu sistema.
+2. Instale as dependências necessárias (se houver, como `lib_applogs`).
+3. Coloque o aplicativo e o `settings.json` no mesmo diretório.
+
+## Configuração
+
+Crie um arquivo `settings.json` com a seguinte estrutura:
+
+```json
+[
+    {
+        "folder_path": "path/to/your/folder",
+        "day_less": 30,
+        "run_pause_time": 3600
+    }
+]
+```
+
+- `folder_path`: O caminho do diretório a ser limpo.
+- `day_less`: O número de dias a subtrair da data atual para determinar quais arquivos/pastas deletar.
+- `run_pause_time`: O tempo em segundos para esperar antes de executar o aplicativo novamente.
+
+## Uso
+
+Executando com python:
+- Copie este repositório para qualquer pasta em seu computador.
+- Certifique-se de instalar o Python e suas dependências mencionadas abaixo.
+- Altere o arquivo settings.json de acordo com suas preferências.
+
+Execute o aplicativo usando o comando:
+```sh
+python backup-cleaning.py
+```
+Para parar o aplicativo, pressione `Ctrl+C`.
+
+Executando o aplicativo usando o arquivo compilado:
+
+1. Copie o backup-cleaning.v2.1.0.exe da pasta `dist` para qualquer pasta.
+2. Copie o arquivo settings.json para a mesma pasta do backup-cleaning.v2.1.0.exe.
+3. Altere o arquivo settings.json de acordo com suas preferências.
+4. Tente fazer um teste antes para garantir que o resultado seja o esperado.
+
+## Detalhes
+
+### Detalhamento do Aplicativo
+
+- **Imports**: O aplicativo importa as bibliotecas necessárias, incluindo `datetime`, `time`, `os`, `shutil`, `pathlib` e `json`.
+- **Logging**: Usa `lib_applogs` para registrar ações e mensagens importantes.
+- **Função Principal**: A função `main()` é onde reside a lógica principal.
+  - **Data Atual**: Define e formata a data atual.
+  - **Função de Deleção**: Deleta arquivos e subpastas mais antigos que o número especificado de dias.
+  - **Pausa e Repetição**: Pausa pelo tempo especificado antes de repetir o processo.
+
+### Função Principal
+
+A função `main()` executa os seguintes passos:
+1. **Definir Data**: Obtém a data atual e a formata.
+2. **Deletar Arquivos/Pastas Antigos**: Lê o `settings.json` e deleta arquivos/pastas mais antigos que o número especificado de dias.
+3. **Pausa e Reinício**: Calcula o tempo de pausa a partir do `settings.json` e pausa antes da próxima execução.
+
+### Função de Deleção
+
+A função `delete()` executa as seguintes ações:
+1. **Ler Configurações**: Abre e lê o arquivo `settings.json`.
+2. **Iterar Sobre Parâmetros**: Para cada conjunto de parâmetros nas configurações, ele:
+   - Imprime e registra o caminho do diretório.
+   - Calcula o limite de data.
+   - Deleta subpastas e arquivos mais antigos que o limite.
+3. **Registrar e Pausar**: Registra as ações e pausa por 2 segundos entre as deleções.
+
+### Tratamento de Erros
+
+O aplicativo inclui tratamento básico de erros:
+- **Bloco Try/Except**: Captura e registra erros se nenhum objeto for encontrado para deleção.
+
+### Encerramento do Aplicativo
+
+O aplicativo pode ser encerrado graciosamente usando `KeyboardInterrupt` (Ctrl+C) ou, na versão compilada, basta fechar o terminal.
+
