@@ -63,7 +63,7 @@ def daily():
                             modification_formated_date = modification_date.strftime("%d/%m/%Y %H:%M:%S")
                             
                             os.remove(file_in)
-                            print(f"-- Modification date of folder is under of:", modification_formated_date , 'file {file_in} deleted!')
+                            print(f"-- Modification date of folder is under of: {modification_formated_date} file {file_in} deleted!")
                             lib_applogs.logger.warning(f'Deleted: {file_in}')
                             time.sleep(1)
 

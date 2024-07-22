@@ -101,7 +101,7 @@
         "watchedDir": {
             "day_less": "32",
             "folder_path": "C:\\teste\\DATA_LAKE\\",
-            "ExceptExtDir": "TRN,TRT,JPEG,file109,ETP"
+            "ExceptExtDir": "TRN,TRT,JPEG,file109"
         }
     },
     {
