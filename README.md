@@ -1,6 +1,78 @@
 # Daily Cleanup application (BACKUP CLEANING)
 Below we have the `Portuguese` version of this document.
 This Python application performs daily cleanup operations on specified directories, removing files and subfolders that are older than a given number of days. The application logs its actions and can be configured via a `settings.json` file.
+Is too important to make sure the directory structure is correct, because for each `settings.json` configuration the application treats only for the `folder path` and one level above. For example:
+
+folder_path: C:\TEST\
+````
+PS C:\test> tree /F
+Folder PATH listing
+Volume serial number is FAEE-A000
+C:.
+└───ROOT
+    │   level_one_file01.txt
+    │   level_one_file02.txt
+    │
+    ├───level_one_del
+    │       level_two_file_delete.txt
+    │
+    └───level_one_dir
+        │   example.txt
+        │
+        └───level_two_dir
+                test001.txt
+                teste002.jpg
+````
+                
+After application running all directory tree will be deleted, but if you dont want to delete all tree leaving some files on other level on the `folder path` you should to configure the folder exception before and set it on other json section.
+
+Example:
+````
+[
+    {
+        "run_pause_time": "86400"
+    },
+    {
+        "logs_path": "logs",
+        "log_name": "backup-cleaning.log"
+    },
+    {
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "`C:\\TEST\\`",
+            "ExceptExtDir": "`level_one_dir`"
+        }
+    },
+    {
+        "watchedDir": {
+            "day_less": "30",
+            "folder_path": "`C:\\TEST\\level_one_dir`",
+            "ExceptExtDir": "`jpg,WAV`"
+        }
+    }
+]
+````
+It will be so:
+````
+PS C:\test> tree /F
+Folder PATH listing
+Volume serial number is FAEE-A000
+C:.
+└───ROOT
+    │   level_one_file01.txt (DELETE)
+    │   level_one_file02.txt (DELETE)
+    │
+    ├───level_one_del (DELETE)
+    │       level_two_file_delete.txt (DELETE)
+    │
+    └───level_one_dir (* NOT DELETE)
+        │   example.txt (DELETE)
+        │
+        └───level_two_dir (* NOT DELETE)
+                test001.txt (DELETE)
+                teste002.jpg (* NOT DELETE)
+````
+
 
 ### Purpose of the application
 The **Backup Cleaning** allows to purge folders of backups in a server. The parameters of time (in days), locations and logs configurations can be set through a file named settings.json. This application runs reading all folders and files on the root path, verifying the modification date, and if the name of file or folder has some part as excluded or exception. After that, all of files or folders and its files will be deleted.
@@ -112,7 +184,6 @@ The application includes basic error handling:
 
 The application can be terminated gracefully using `KeyboardInterrupt` (Ctrl+C) or in using the compiled version, you can only close the terminal.
 
-=======
 # Aplicativo de Limpeza Diária de backups (BACKUP CLEANING)
 
 Este aplicativo Python realiza operações diárias de limpeza em diretórios especificados, removendo arquivos e subpastas que são mais antigos que um determinado número de dias. O aplicativo registra suas ações e pode ser configurado através de um arquivo `settings.json`.
